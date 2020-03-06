@@ -1,0 +1,31 @@
+{
+    "teas": [{
+
+            "id": 1,
+            "name": "Black tea",
+            "country": "China",
+            "image": "../teaPics/blackTea.jpg",
+            "steepingTime": "Steep at 212° for 3 minutes.",
+            "bestBefore": "2020-10-30"
+        },
+        {
+
+            "id": 2,
+            "name": "Grean tea",
+            "country": "China",
+            "image": "../teaPics/blackTea.jpg",
+            "steepingTime": "Steep at 212° for 4 minutes.",
+            "bestBefore": "2021-12-30"
+        },
+        {
+
+            "id": 3,
+            "name": "Earl Grey",
+            "country": "China",
+            "image": "../teaPics/blackTea.jpg",
+            "steepingTime": "Steep at 212° for 5 minutes.",
+            "bestBefore": "2021-06-22"
+        }
+    ]
+
+}

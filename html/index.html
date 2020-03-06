@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../css/teaStore.css" rel="stylesheet">
     <title>Teastore</title>
 </head>
 <body>
-    <h1>Teastore</h1>
+    <div class="container">
+        <h1>Teastore</h1>
+        <ul id="teaList"></ul>
+        <div class="teaOne">
+            <div class="teaName">
+                <h4>Black tea</h4>
+            </div>
+            <div class="image">
+                <img src="../teaPics/blackTea.jpg" width="100" height="100" alt="Black tea">
+            </div>
+            <div class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur    
+                 repudiandae eos fugit tempore fuga ipsam est pariatur officia eius error
+                  expedita sed fugiat sint blanditiis repellat obcaecati, illum quidem?
+            </div>
+            <div class="price">
+                <p>200:-/hg</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success">+</button> 
+                <input type="text" id="number" size="1" name="number">
+                <button type="button" class="btn btn-success">-</button> 
+                <button type="button" class="btn btn-success">add to cart</button> 
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/teaStore.js"></script>
 </body>
 </html>
