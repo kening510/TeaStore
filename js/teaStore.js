@@ -1,31 +1,38 @@
 $(document).ready(function () {
-   loadJSON();
+    loadJSON();
 })
 
 function loadJSON() {
     console.log("Loading JSON");
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET','../json/teaStore.json',true);
+    xhr.open('GET', '../json/teaStore.json', true);
     xhr.send();
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200 ){
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
             console.log(this);   // there is no resonpseJSON
 
             let data = this.responseText;
             //console.log(json);
 
-            
+
             let json = JSON.parse(data);
             console.log(json);
-            
-            
-            json.teas.forEach(tea => {
-                $("#teaList").append('<li id="' + tea.id +'"> ' +  tea.name + '</li>')
-            });
-            
 
-            }
+
+            json.teas.forEach(tea => {
+                $("#tea-list").append('<li class ="list-group-item" id="' + tea.id + '"> ' + tea.name + '</li>')
+            });
+
+
         }
+    }
 }
 
+(function(){
+ 
+    $("#cart").on("click", function() {
+      $(".shopping-cart").fadeToggle( "fast");
+    });
+    
+  })();
