@@ -10,7 +10,7 @@ function loadJSON() {
     xhr.send();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this); // there is no resonpseJSON
+            console.log(this); 
 
             let data = this.responseText;
             //console.log(json);
@@ -58,6 +58,7 @@ function plus(id) {
     let value = document.getElementById("input" + id).value;
     document.getElementById("input" + id).value = +value + 1;
 }
+
 function minus(id) {
     let value = document.getElementById("input" + id).value;
     if (value > 0) {
