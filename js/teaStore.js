@@ -1,6 +1,7 @@
 $(document).ready(function () {
     setOnClickListeners();
     loadJSON();
+    loadCart();
 })
 
 function loadJSON() {
@@ -69,7 +70,31 @@ function minus(id) {
 function setOnClickListeners() {
     $('#listProducts').on('click', '.addToCart', function () {
         var teID = $(this).attr('teaID')
-        var specificVal = $("#input"+teID).val()
-        alert("ID: " + teID + " amount: " + specificVal);
+        var specificVal = $("#input"+teID).val();
+        addToCart(teID,specificVal);
+        //alert("ID: " + teID + " amount: " + specificVal);
     });
+}
+
+let shoppingList = [];
+
+function addToCart(id,amount){
+    //if needed : if teaId is already added, only need to change amount
+    let teaProduct = {id,amount};
+    shoppingList.push(teaProduct);
+    saveCart();
+    
+}
+
+function saveCart(){
+    localStorage.setItem("toBuyList", JSON.stringify(shoppingList));
+}
+
+function loadCart(){
+    shoppingList = JSON.parse(localStorage.getItem("toBuyList"));
+    //console.log(shoppingList);
+}
+function emptyCart(){
+    shoppingList = [];
+    saveCart();
 }
