@@ -40,7 +40,7 @@ function loadJSON() {
                             </div>
                             <div class="col-4">
                                 <button type="button" class="btn btn-success">+</button>
-                                <input type="text" size="1" name="number">
+                                <input type="text" size="1" value="1" name="number">
                                 <button type="button" class="btn btn-success">-</button>
                             </div>
                             <div class="col-4">
