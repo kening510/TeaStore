@@ -15,7 +15,7 @@
             "name": "Grean tea",
             "price":"220:-/hg",
             "country": "China",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/greenTea.jpg",
             "steepingTime": "Steep at 212° for 4 minutes.",
             "bestBefore": "2021-12-30"
         },
@@ -25,7 +25,7 @@
             "name": "Earl Grey",
             "price":"190:-/hg",
             "country": "China",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/earlGrey.PNG",
             "steepingTime": "Steep at 212° for 5 minutes.",
             "bestBefore": "2021-06-22"
         },
@@ -35,7 +35,7 @@
             "name": "Masala chai tea",
             "price":"180:-/hg",
             "country": "India",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/masalaChaiTea.PNG",
             "steepingTime": "Steep at 200° for 3 minutes.",
             "bestBefore": "2022-01-08"
         },
@@ -45,7 +45,7 @@
             "name": "Matcha",
             "price":"300:-/hg",
             "country": "Japan",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/matcha.jpg",
             "steepingTime": "Steep at 170° for 2 minutes.",
             "bestBefore": "2023-05-10"
         },
@@ -55,7 +55,7 @@
             "name": "Sencha",
             "price":"180:-/hg",
             "country": "Japan",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/sencha.PNG",
             "steepingTime": "Steep at 165° for 2 minutes.",
             "bestBefore": "2022-10-10"
         },
@@ -65,7 +65,7 @@
             "name": "Oolong Tea",
             "price":"280:-/hg",
             "country": "China taiwan",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/oolongTea.PNG",
             "steepingTime": "Steep at 212° for 3-5 minutes.",
             "bestBefore": "2023-02-10"
         },
@@ -75,7 +75,7 @@
             "name": "Pu'erh Tea",
             "price":"290:-/hg",
             "country": "China",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/puerhTea.jpg",
             "steepingTime": "Steep at 212° for 3-5 minutes.",
             "bestBefore": "2023-09-20"
         },
@@ -85,7 +85,7 @@
             "name": "White Tea",
             "price":"195:-/hg",
             "country": "China",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/whiteTea.jpg",
             "steepingTime": "Steep at 200° for 3 minutes.",
             "bestBefore": "2024-01-15"
         },
@@ -95,7 +95,7 @@
             "name": "Herbal Teas",
             "price":"230:-/hg",
             "country": "China",
-            "image": "../teaPics/blackTea.jpg",
+            "image": "../teaPics/herbalTeas.PNG",
             "steepingTime": "Steep at 212° for 5-10 minutes.",
             "bestBefore": "2022-08-10"
         }

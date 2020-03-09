@@ -18,12 +18,16 @@ function loadJSON() {
 
             let json = JSON.parse(data);
             console.log(json);
+            console.log(json.teas.length);
+            
+
+
 
 
             json.teas.forEach(tea => {
                 $("#tea-list").append(`<li class="list-group-item">
                  <div class="row">
-                    <div class="col-3"><img src="` + tea.image + `" class="img-fluid" alt="Black tea">
+                    <div class="col-3"><img src="` + tea.image + `" id="teaImage" class="img-fluid " alt="Black tea">
                     </div>
                     <div class="col-9">
                         <div class="row">
