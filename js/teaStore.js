@@ -10,7 +10,7 @@ function loadJSON() {
     xhr.send();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this);   // there is no resonpseJSON
+            console.log(this); // there is no resonpseJSON
 
             let data = this.responseText;
             //console.log(json);
@@ -19,7 +19,7 @@ function loadJSON() {
             let json = JSON.parse(data);
             console.log(json);
             console.log(json.teas.length);
-            
+
 
 
 
@@ -32,8 +32,8 @@ function loadJSON() {
                     <div class="col-9">
                         <div class="row">
                             <div class="col-12">
-                                <h4>`+ tea.name + `</h4>
-                                <p> This tea comes from ` + tea.country + ` | ` + tea.steepingTime + ` <br> Best before ` + tea.bestBefore +`</p> 
+                                <h4>` + tea.name + `</h4>
+                                <p> This tea comes from ` + tea.country + ` | ` + tea.steepingTime + ` <br> Best before ` + tea.bestBefore + `</p> 
                             </div>
                         </div>
                         <div class="row">
@@ -43,9 +43,9 @@ function loadJSON() {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-success">+</button>
-                                <input type="text" size="1" value="1" name="number">
-                                <button type="button" class="btn btn-success">-</button>
+                                <button type="button" onclick ="plus()" class="btn btn-success">+</button>
+                                <input type="text" id="input" size="1" value="1" name="number">
+                                <button type="button" onclick ="minus()" class="btn btn-success">-</button>
                             </div>
                             <div class="col-4">
                                 <button type="button" class="btn btn-success btn-sm">add to cart</button>
@@ -58,6 +58,18 @@ function loadJSON() {
             });
 
 
+
         }
+
     }
 }
+
+function plus() {
+    let value = document.getElementById("input").value;
+    document.getElementById("input").value = +value + 1;
+}
+function minus() {
+    let value = document.getElementById("input").value;
+    document.getElementById("input").value = +value - 1;
+}
+
