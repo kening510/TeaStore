@@ -43,9 +43,9 @@ function loadJSON() {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <button type="button" onclick ="plus()" class="btn btn-success">+</button>
-                                <input type="text" id="input" size="1" value="1" name="number">
-                                <button type="button" onclick ="minus()" class="btn btn-success">-</button>
+                                <button type="button" onclick ="plus(`+tea.id+`)" class="btn btn-success">+</button>
+                                <input type="text" id="input`+tea.id+`" size="1" value="1" name="number">
+                                <button type="button" onclick ="minus(`+tea.id+`)" class="btn btn-success">-</button>
                             </div>
                             <div class="col-4">
                                 <button type="button" class="btn btn-success btn-sm">add to cart</button>
@@ -64,12 +64,14 @@ function loadJSON() {
     }
 }
 
-function plus() {
-    let value = document.getElementById("input").value;
-    document.getElementById("input").value = +value + 1;
+function plus(id) {
+    let value = document.getElementById("input"+id).value;
+    document.getElementById("input"+id).value = +value + 1;
 }
-function minus() {
-    let value = document.getElementById("input").value;
-    document.getElementById("input").value = +value - 1;
+function minus(id) {
+    let value = document.getElementById("input"+id).value;
+    if(value>0){
+        document.getElementById("input"+id).value = +value - 1;
+    }
 }
 
