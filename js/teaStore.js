@@ -116,15 +116,11 @@ function addToCart(id, amount) {
     if (!existsInArray(shoppingList, id)) {
         let teaProduct = { id, amount };
         shoppingList.push(teaProduct);
-        console.log(shoppingList);
-        saveCart(shoppingList);
     } else {
         addToAmount(id, amount)
-        console.log(shoppingList);
-
     }
-    //if needed : if teaId is already added, only need to change amount
-
+    console.log(shoppingList);
+    saveCart(shoppingList);
 }
 
 function saveCart() {
