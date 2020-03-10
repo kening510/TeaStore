@@ -4,6 +4,10 @@ $(document).ready(function () {
     loadCart();
 })
 
+let shoppingList = [];
+
+let teaList = [];
+
 function loadJSON() {
     console.log("Loading JSON");
     let xhr = new XMLHttpRequest();
@@ -19,6 +23,10 @@ function loadJSON() {
             let json = JSON.parse(data);
             console.log(json);
             console.log(json.teas.length);
+
+            
+            teaList = json.teas; // save all tea here
+
 
             json.teas.forEach(tea => {
                 $("#tea-list").append(`<li class="list-group-item">
@@ -76,7 +84,7 @@ function setOnClickListeners() {
     });
 }
 
-let shoppingList = [];
+
 
 function addToCart(id,amount){
     //if needed : if teaId is already added, only need to change amount
