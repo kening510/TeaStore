@@ -2,6 +2,7 @@ $(document).ready(function () {
     setOnClickListeners();
     loadJSON();
     loadCart();
+    createCartItem()
 })
 
 
@@ -56,7 +57,7 @@ function loadJSON() {
                                 <button type="button" onclick ="minus(`+ tea.id + `)" class="btn btn-success">-</button>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="addToCart btn btn-success btn-sm" teaID="`+ tea.id + `">add to cart</button>
+                                <button type="button" onclick ="createCartItem()" class="addToCart btn btn-success btn-sm" teaID="`+ tea.id + `">add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -67,33 +68,35 @@ function loadJSON() {
     }
 }
 
-console.log(teaList[1]);
-function createCartItem(teaID, amount) {
 
-    $('#cart-items').append(`
-        <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
-        </div>
-    <div class="col-10 col-sm-10 text-md-right col-md-6">
-    <h4 class="product-name"><strong>Product Name</strong></h4>
-    <h4>
-        <small>200:-/hg</small>
-    </h4>
-</div>
-<div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row cen">
-    <div class="col-5 col-sm-5 col-md-6">
-        <p><strong>25<span class="text-muted">x</span></strong></p>
-    </div>
-    <div class="col-4 col-sm-4 col-md-4">
-        <div class="quantity">
-            <input type="button" value="+" class="plus">
-            <input type="number" step="1" max="99" min="1" value="1" title="Qty"
-                class="qty">
-            <!--size 4?-->
-            <input type="button" value="-" class="minus">
-        </div>
-    </div>`)
 
-}
+
+
+
+
+//     $('#cart-items').append(`
+//         <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+//         </div>
+//     <div class="col-10 col-sm-10 text-md-right col-md-6">
+//     <h4 class="product-name"><strong>Product Name</strong></h4>
+//     <h4>
+//         <small>200:-/hg</small>
+//     </h4>
+// </div>
+// <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row cen">
+//     <div class="col-5 col-sm-5 col-md-6">
+//         <p><strong>25<span class="text-muted">x</span></strong></p>
+//     </div>
+//     <div class="col-4 col-sm-4 col-md-4">
+//         <div class="quantity">
+//             <input type="button" value="+" class="plus">
+//             <input type="number" step="1" max="99" min="1" value="1" title="Qty"
+//                 class="qty">
+//             <!--size 4?-->
+//             <input type="button" value="-" class="minus">
+//         </div>
+//     </div>`)
+
 
 function plus(id) {
     let value = document.getElementById("input" + id).value;
@@ -109,10 +112,11 @@ function minus(id) {
 }
 
 function setOnClickListeners() {
-    $('#listProducts').on('click', '.addToCart', function () {
+    $('#listProducts').on('click', '.addToCart', function (event) {
         var teID = $(this).attr('teaID')
         var specificVal = $("#input" + teID).val();
         addToCart(teID, parseInt(specificVal));
+        event.stopPropagation();
     });
 }
 
@@ -120,6 +124,7 @@ function addToCart(id, amount) {
     if (!existsInArray(shoppingList, id)) {
         let teaProduct = { id, amount };
         shoppingList.push(teaProduct);
+        
     } else {
         addToAmount(id, amount)
     }
@@ -140,6 +145,12 @@ function loadCart() {
         shoppingList = JSON.parse(localStorage.getItem("toBuyList"));
     }
 }
+
+function updateAndClearCart(){
+
+
+}
+
 function emptyCart() {
     shoppingList = [];
     saveCart();
@@ -161,6 +172,16 @@ function addToAmount(id, amount) {
             break;
         }
     }
+}
+
+function createCartItem() {
+    $("#cart-list").empty()
+    loadCart();
+    shoppingList.forEach(tea => {
+        console.log(tea);
+        $("#cart-list").append(`<li class="list-group-item">` + "TeaID: " + tea.id + " Amount: " + tea.amount + `</li>`)
+    });
+    
 }
 
 
