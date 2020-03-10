@@ -11,6 +11,8 @@ var shoppingList = [];
 console.log(shoppingList);
 
 
+
+
 function loadJSON() {
     console.log("Loading JSON");
     let xhr = new XMLHttpRequest();
@@ -50,7 +52,7 @@ function loadJSON() {
                             </div>
                             <div class="col-4">
                                 <button type="button" onclick ="plus(`+ tea.id + `)" class="btn btn-success">+</button>
-                                <input class="teaAmountInput" type="text" id="input`+ tea.id + `" size="1" value="1" name="number">
+                                <input class="teaAmountInput" type="text" id="input`+ tea.id + `" size="1" value="1" min="1" name="number" readonly>
                                 <button type="button" onclick ="minus(`+ tea.id + `)" class="btn btn-success">-</button>
                             </div>
                             <div class="col-4">
@@ -65,7 +67,9 @@ function loadJSON() {
     }
 }
 
+console.log(teaList[1]);
 function createCartItem(teaID, amount) {
+
     $('#cart-items').append(`
         <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
         </div>
@@ -96,6 +100,7 @@ function plus(id) {
     document.getElementById("input" + id).value = +value + 1;
 }
 
+
 function minus(id) {
     let value = document.getElementById("input" + id).value;
     if (value > 0) {
@@ -108,7 +113,6 @@ function setOnClickListeners() {
         var teID = $(this).attr('teaID')
         var specificVal = $("#input" + teID).val();
         addToCart(teID, parseInt(specificVal));
-        //alert("ID: " + teID + " amount: " + specificVal);
     });
 }
 
