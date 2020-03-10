@@ -4,9 +4,12 @@ $(document).ready(function () {
     loadCart();
 })
 
-let shoppingList = [];
 
-let teaList = [];
+
+var teaList = [];
+var shoppingList = [];
+console.log(shoppingList);
+
 
 function loadJSON() {
     console.log("Loading JSON");
@@ -15,7 +18,7 @@ function loadJSON() {
     xhr.send();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this); 
+            console.log(this);
 
             let data = this.responseText;
             //console.log(json);
@@ -24,9 +27,8 @@ function loadJSON() {
             console.log(json);
             console.log(json.teas.length);
 
-            
-            teaList = json.teas; // save all tea here
 
+            teaList = json.teas; // save all tea here
 
             json.teas.forEach(tea => {
                 $("#tea-list").append(`<li class="list-group-item">
@@ -63,6 +65,32 @@ function loadJSON() {
     }
 }
 
+function createCartItem(teaID, amount) {
+    $('#cart-items').append(`
+        <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+        </div>
+    <div class="col-10 col-sm-10 text-md-right col-md-6">
+    <h4 class="product-name"><strong>Product Name</strong></h4>
+    <h4>
+        <small>200:-/hg</small>
+    </h4>
+</div>
+<div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row cen">
+    <div class="col-5 col-sm-5 col-md-6">
+        <p><strong>25<span class="text-muted">x</span></strong></p>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4">
+        <div class="quantity">
+            <input type="button" value="+" class="plus">
+            <input type="number" step="1" max="99" min="1" value="1" title="Qty"
+                class="qty">
+            <!--size 4?-->
+            <input type="button" value="-" class="minus">
+        </div>
+    </div>`)
+
+}
+
 function plus(id) {
     let value = document.getElementById("input" + id).value;
     document.getElementById("input" + id).value = +value + 1;
@@ -78,31 +106,61 @@ function minus(id) {
 function setOnClickListeners() {
     $('#listProducts').on('click', '.addToCart', function () {
         var teID = $(this).attr('teaID')
-        var specificVal = $("#input"+teID).val();
-        addToCart(teID,specificVal);
+        var specificVal = $("#input" + teID).val();
+        addToCart(teID, parseInt(specificVal));
         //alert("ID: " + teID + " amount: " + specificVal);
     });
 }
 
+function addToCart(id, amount) {
+    if (!existsInArray(shoppingList, id)) {
+        let teaProduct = { id, amount };
+        shoppingList.push(teaProduct);
+        console.log(shoppingList);
+        saveCart(shoppingList);
+    } else {
+        addToAmount(id, amount)
+        console.log(shoppingList);
 
-
-function addToCart(id,amount){
+    }
     //if needed : if teaId is already added, only need to change amount
-    let teaProduct = {id,amount};
-    shoppingList.push(teaProduct);
-    saveCart();
-    
+
 }
 
-function saveCart(){
+function saveCart() {
     localStorage.setItem("toBuyList", JSON.stringify(shoppingList));
 }
 
-function loadCart(){
-    shoppingList = JSON.parse(localStorage.getItem("toBuyList"));
-    //console.log(shoppingList);
+function saveCart() {
+    localStorage.setItem("toBuyList", JSON.stringify(shoppingList));
 }
-function emptyCart(){
+
+function loadCart() {
+    if (localStorage.getItem("toBuyList") !== null) {
+        shoppingList = JSON.parse(localStorage.getItem("toBuyList"));
+    }
+}
+function emptyCart() {
     shoppingList = [];
     saveCart();
 }
+
+function existsInArray(array, id) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].id === id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function addToAmount(id, amount) {
+    for (var i in shoppingList) {
+        if (shoppingList[i].id == id) {
+            shoppingList[i].amount = parseInt(shoppingList[i].amount) + parseInt(amount)
+            break;
+        }
+    }
+}
+
+
