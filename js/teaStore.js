@@ -24,7 +24,7 @@ function loadJSON() {
             console.log(this);
 
             let data = this.responseText;
-            //console.log(json);
+           
 
             let json = JSON.parse(data);
             console.log(json);
@@ -64,6 +64,17 @@ function loadJSON() {
                 </div>
             </li>`)
             });
+
+
+            $("#teaImage").click(function(){  // not working....
+  
+                $(this).toggleClass("img-fluid");
+                $(this).toggleClass("max");
+               
+                
+                
+            });
+            
         }
     }
 }
