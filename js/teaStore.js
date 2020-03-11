@@ -58,9 +58,9 @@ function loadJSON() {
                                 </div>
                             </div>
                             <div class="col-4" index="plusMinus">
-                                <button type="button" class="minus btn btn-success">-</button>
+                                <button type="button" class="minus btn btn-success"><span class="quantity-button">-</span></button>
                                     <input class="teaAmountInput" type="text" teaAmount="`+ tea.id + `" id="input` + tea.id + `" size="1" value="1" min="1" name="number" readonly>
-                                <button type="button" class="plus btn btn-success">+</button>
+                                <button type="button" class="plus btn btn-success"><span class="quantity-button">+</span></button>
                             </div>
                             <div class="col-4">
                                 <button type="button" class="addToCart btn btn-success btn-sm" teaID="`+ tea.id + `">add to cart</button>
@@ -139,6 +139,10 @@ function setOnClickListeners() {
 
     $('.home-button').click(function (event) {
         goToHome();
+        event.stopPropagation();
+    })
+
+    $('#cart-dropdown').click(function (event) {
         event.stopPropagation();
     })
 
@@ -223,23 +227,39 @@ function renderCartItems() {
     shoppingList.forEach(tea => {
 
         var teaName = "undefined";
+        var teaPrice = 0;
         var pricePerTea = 0;
+        var teaImage = "../teaPics/blackTea.jpg";
 
         for (let i = 0; i < teaList.teas.length; i++) {
             if(teaList.teas[i].id == tea.id) {
                 teaName = teaList.teas[i].name;
+                teaImage = teaList.teas[i].image;
+                teaPrice = teaList.teas[i].price;
                 pricePerTea = teaList.teas[i].price * tea.amount;
                 totalPrice += teaList.teas[i].price * tea.amount;
             }
         }
 
-        $("#cart-list").append(`<li class="list-group-item">`  + teaName +`
-        <button type="button" class="minus btn btn-success" minusTeaID="`+ tea.id +`">-</button>
-        `+ tea.amount +`
-        <button type="button" class="plus btn btn-success" plusTeaID="`+ tea.id +`">+</button>
-        <button type="button" class="remove-from-cart btn btn-warning btn-circle" teaID="`+ tea.id +`"><i class="fa fa-times"></i></button>
-        <p> `+ formatter.format(pricePerTea) +` </p>
-        </li>`)
+        $("#cart-list").append(`
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="` + teaImage + `" class="cart-item-picture" alt="Black tea" />
+                    </div>
+                    <div class="col-7">
+                        <span class="cart-item-title">` + teaName + `</span> </br>
+                        <span class="cart-item-price">` + pricePerTea + ` kr</span> </br>
+                        <button type="button" class="minus btn btn-success" minusTeaID="`+ tea.id +`"><span class="quantity-button">-</span></button>` + 
+                        `&nbsp;&nbsp;` + tea.amount + `&nbsp;&nbsp;` +
+                        `<button type="button" class="plus btn btn-success" plusTeaID="`+ tea.id +`"><span class="quantity-button">+</span></button>
+                    </div>
+                    <div class="col-2">
+                        <a href="#" class="remove-from-cart close btn" teaID="` + tea.id + `"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </li>
+        `);
     });
 
     $("#cart-list").append(`<li class="list-group-item">Total: `  + formatter.format(totalPrice) +` </i>`)
