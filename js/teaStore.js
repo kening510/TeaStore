@@ -197,7 +197,12 @@ function addToAmount(id, amount) {
 function decrementFromAmountByOne(id) {
     for (var i in shoppingList) {
         if (shoppingList[i].id == id) {
-            shoppingList[i].amount = parseInt(shoppingList[i].amount) - 1;
+            if(shoppingList[i].amount > 1){
+                shoppingList[i].amount = parseInt(shoppingList[i].amount) - 1;
+            }else{
+                removeCartItem(shoppingList[i].id)
+            }
+                
             break;
         }
     }
