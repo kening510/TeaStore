@@ -13,6 +13,7 @@ var teaList = [];
 var shoppingList = [];
 var orderList = [];
 console.log(shoppingList);
+console.log(shoppingList.length)
 
 const formatter = new Intl.NumberFormat('sv-SE', {
     style: 'currency',
@@ -435,8 +436,13 @@ function goToHome() {
 }
 
 function goToOrderConfirmation() {
-    console.log(orderList);
-    emptyCart();
-    loadOrder();
-    location.href="orderconfirmation.html"
+    if(shoppingList.length != 0) {
+        console.log(shoppingList.length)
+        console.log(orderList);
+        emptyCart();
+        loadOrder();
+        location.href="orderconfirmation.html"
+    } else {
+        alert("Cart is empty!");
+    }
 }
