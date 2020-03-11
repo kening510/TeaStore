@@ -14,7 +14,10 @@ var shoppingList = [];
 var orderList = [];
 console.log(shoppingList);
 
-
+const formatter = new Intl.NumberFormat('sv-SE', {
+    style: 'currency',
+    currency: 'SEK'
+  })
 
 
 function loadJSON() {
@@ -213,29 +216,34 @@ function renderCartItems() {
     $("#cart-list").empty()
     loadCart();
 
-
     loadTeaList();
-    console.log(teaList);
-    var innerTeas = Object.values(teaList);
-    console.log(innerTeas);
-    var innerTeas2 = Object.values(innerTeas);
-    console.log(innerTeas2[0]);
 
-    for (teas in innerTeas) {
-        console.log(teas);
-      }
+    var totalPrice = 0;
         
     shoppingList.forEach(tea => {
 
+        var teaName = "undefined";
+        var pricePerTea = 0;
 
+        for (let i = 0; i < teaList.teas.length; i++) {
+            if(teaList.teas[i].id == tea.id) {
+                teaName = teaList.teas[i].name;
+                pricePerTea = teaList.teas[i].price * tea.amount;
+                totalPrice += teaList.teas[i].price * tea.amount;
+            }
+        }
 
-        $("#cart-list").append(`<li class="list-group-item">` + "TeaID: " + tea.id +`"
+        $("#cart-list").append(`<li class="list-group-item">`  + teaName +`
         <button type="button" class="minus btn btn-success" minusTeaID="`+ tea.id +`">-</button>
         `+ tea.amount +`
         <button type="button" class="plus btn btn-success" plusTeaID="`+ tea.id +`">+</button>
-        <button type="button" class="remove-from-cart btn btn-warning btn-circle" teaID="`+ tea.id +`"><i class="fa fa-times"></i>
+        <button type="button" class="remove-from-cart btn btn-warning btn-circle" teaID="`+ tea.id +`"><i class="fa fa-times"></i></button>
+        <p> `+ formatter.format(pricePerTea) +` </p>
         </li>`)
     });
+
+    $("#cart-list").append(`<li class="list-group-item">Total: `  + formatter.format(totalPrice) +` </i>`)
+
 };
 
 
@@ -253,150 +261,126 @@ function removeCartItem(id) {
 
 function listShoppingCartItems() {
 
-    const formatter = new Intl.NumberFormat('sv-SE', {
-        style: 'currency',
-        currency: 'SEK'
-      })
+        loadTeaList();
 
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '../json/teaStore.json', true);
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-
-
-            var teaName = "undefined";
-
-            $("#checkoutItems").append(`<br> <li class=" list-group-item">
-            <div class="row">
-            <div class="col-3"><h5>Item</h5></div>
-            <div class="col-3"><h5>Amount</h5></div>
-            <div class="col-3"><h5>Subtotal</h5></div>
-            </div>
-            </li>`
-            );
-            var totalPrice = 0;
-
-
-            $.each(shoppingList, function(index, value){
-                var count = 0;
-                var teaID = value.id;
-                console.log(teaID);
-                var pricePerTea = 0;
         
-                teaList.forEach(tea => {
-                    if(tea.id == teaID){
-                        teaName = tea.name;
-                        pricePerTea = tea.price * value.amount;
-                        totalPrice += tea.price * value.amount;
-                    }
-                });
+
+        $("#checkoutItems").append(`<br> <li class=" list-group-item">
+        <div class="row">
+        <div class="col-3"><h5>Item</h5></div>
+        <div class="col-3"><h5>Amount</h5></div>
+        <div class="col-3"><h5>Subtotal</h5></div>
+        </div>
+        </li>`
+        );
         
-                $("#checkoutItems").append(` <li class=" list-group-item">
-                    <div class="row">
-                    <div class="col-3"><p>` + teaName + `</p></div>
-                    <div class="col-3"><p>` + value.amount + ` hg </p></div>
-                    <div class="col-3"><p>` + formatter.format(pricePerTea) + `</p></div>
-                    </div>
-                    </li>`
-                    );
+        var teaName = "undefined";
+        var totalPrice = 0;
 
-                    count ++;
-            })
 
-            $("#checkoutItems").append(` <li class=" list-group-item">
-            <div class="row">
-            <div class="col-3"><p> </p></div>
-            <div class="col-3"><p><b>Total: </b></p></div>
-            <div class="col-3"><p>` + formatter.format(totalPrice) + `</p></div>
-            </div>
-            </li>`
-            );
+        $.each(shoppingList, function(index, value){
+            var count = 0;
+            var teaID = value.id;
+            console.log(teaID);
+            var pricePerTea = 0;
     
+            for (let i = 0; i < teaList.teas.length; i++) {
+                if(teaList.teas[i].id == value.id) {
+                    teaName = teaList.teas[i].name;
+                    pricePerTea = teaList.teas[i].price * value.amount;
+                    totalPrice += teaList.teas[i].price * value.amount;
+                }
+            }
+    
+            $("#checkoutItems").append(` <li class=" list-group-item">
+                <div class="row">
+                <div class="col-3"><p>` + teaName + `</p></div>
+                <div class="col-3"><p>` + value.amount + ` hg </p></div>
+                <div class="col-3"><p>` + formatter.format(pricePerTea) + `</p></div>
+                </div>
+                </li>`
+                );
 
-            
-        }
-    }
+                count ++;
+        })
 
-
-
-
+        $("#checkoutItems").append(` <li class=" list-group-item">
+        <div class="row">
+        <div class="col-3"><p> </p></div>
+        <div class="col-3"><p><b>Total: </b></p></div>
+        <div class="col-3"><p>` + formatter.format(totalPrice) + `</p></div>
+        </div>
+        </li>`
+        );
 
 }
 
+
 function listOrderConfirmation() {
 
-    const formatter = new Intl.NumberFormat('sv-SE', {
-        style: 'currency',
-        currency: 'SEK'
-      })
-
+        
       loadOrder();
-      console.log(orderList);
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '../json/teaStore.json', true);
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-
-            var teaName = "undefined";
-
-            $("#orderConfirmationItems").append(`<br> <li class=" list-group-item">
-            <div class="row">
-            <div class="col-2"></div>
-            <div class="col-3"><h5>Item</h5></div>
-            <div class="col-3"><h5>Amount</h5></div>
-            <div class="col-3"><h5>Subtotal</h5></div>
-            </div>
-            </li>`
-            );
-            var totalPrice = 0;
+      loadTeaList();
 
 
-            $.each(orderList, function(index, value){
-                var count = 0;
-                var teaID = value.id;
-                console.log(teaID);
-                var pricePerTea = 0;
-                var teaImage;
-        
-                teaList.forEach(tea => {
-                    if(tea.id == teaID){
-                        teaName = tea.name;
-                        teaImage = tea.image;
-                        pricePerTea = tea.price * value.amount;
-                        totalPrice += tea.price * value.amount;
-                    }
-                });
-        
-                $("#orderConfirmationItems").append(` <li class=" list-group-item">
-                    <div class="row">
-                    <div class="col-2"><img src="` + teaImage + `" id="teaImage" class="img-fluid"></div>
-                    <div class="col-3"><p>` + teaName + `</p></div>
-                    <div class="col-3"><p>` + value.amount + ` hg </p></div>
-                    <div class="col-3"><p>` + formatter.format(pricePerTea) + `</p></div>
-                    </div>
-                    </li>`
-                    );
-
-                    count ++;
-            })
-
-            $("#orderConfirmationItems").append(` <li class=" list-group-item">
-            <div class="row">
-            <div class="col-2"><p> </p></div>
-            <div class="col-3"><p> </p></div>
-            <div class="col-3"><p><b>Total: </b></p></div>
-            <div class="col-3"><p>` + formatter.format(totalPrice) + `</p></div>
-            </div>
-            </li>`
-            );
     
-            
-            
+
+    $("#orderConfirmationItems").append(`<br> <li class=" list-group-item">
+    <div class="row">
+    <div class="col-2"></div>
+    <div class="col-3"><h5>Item</h5></div>
+    <div class="col-3"><h5>Amount</h5></div>
+    <div class="col-3"><h5>Subtotal</h5></div>
+    </div>
+    </li>`
+    );
+
+    var teaName = "undefined";
+    var totalPrice = 0;
+
+
+    $.each(orderList, function(index, value){
+        var count = 0;
+        var teaID = value.id;
+        console.log(teaID);
+        var pricePerTea = 0;
+        var teaImage;
+
+        for (let i = 0; i < teaList.teas.length; i++) {
+            if(teaList.teas[i].id == value.id) {
+                teaName = teaList.teas[i].name;
+                teaImage = teaList.teas[i].image;
+                pricePerTea = teaList.teas[i].price * value.amount;
+                totalPrice += teaList.teas[i].price * value.amount;
+            }
         }
-    }
+
+        $("#orderConfirmationItems").append(` <li class=" list-group-item">
+            <div class="row">
+            <div class="col-2"><img src="` + teaImage + `" id="teaImage" class="img-fluid"></div>
+            <div class="col-3"><p>` + teaName + `</p></div>
+            <div class="col-3"><p>` + value.amount + ` hg </p></div>
+            <div class="col-3"><p>` + formatter.format(pricePerTea) + `</p></div>
+            </div>
+            </li>`
+            );
+
+            count ++;
+    })
+
+    $("#orderConfirmationItems").append(` <li class=" list-group-item">
+    <div class="row">
+    <div class="col-2"><p> </p></div>
+    <div class="col-3"><p> </p></div>
+    <div class="col-3"><p><b>Total: </b></p></div>
+    <div class="col-3"><p>` + formatter.format(totalPrice) + `</p></div>
+    </div>
+    </li>`
+    );
+
+    
+    
+
 
 
 }
