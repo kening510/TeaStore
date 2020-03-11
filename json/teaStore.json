@@ -3,7 +3,7 @@
 
             "id": 1,
             "name": "Black tea",
-            "price":"200:-/hg",
+            "price":200,
             "country": "China",
             "image": "../teaPics/blackTea.jpg",
             "steepingTime": "Steep at 212° for 3 minutes.",
@@ -13,7 +13,7 @@
 
             "id": 2,
             "name": "Green tea",
-            "price":"220:-/hg",
+            "price":220,
             "country": "China",
             "image": "../teaPics/greenTea.jpg",
             "steepingTime": "Steep at 212° for 4 minutes.",
@@ -23,7 +23,7 @@
 
             "id": 3,
             "name": "Earl Grey",
-            "price":"190:-/hg",
+            "price":190,
             "country": "China",
             "image": "../teaPics/earlGrey.PNG",
             "steepingTime": "Steep at 212° for 5 minutes.",
@@ -33,7 +33,7 @@
 
             "id": 4,
             "name": "Masala chai tea",
-            "price":"180:-/hg",
+            "price":180,
             "country": "India",
             "image": "../teaPics/masalaChaiTea.PNG",
             "steepingTime": "Steep at 200° for 3 minutes.",
@@ -43,7 +43,7 @@
 
             "id": 5,
             "name": "Matcha",
-            "price":"300:-/hg",
+            "price":300,
             "country": "Japan",
             "image": "../teaPics/matcha.jpg",
             "steepingTime": "Steep at 170° for 2 minutes.",
@@ -53,7 +53,7 @@
 
             "id": 6,
             "name": "Sencha",
-            "price":"180:-/hg",
+            "price":180,
             "country": "Japan",
             "image": "../teaPics/sencha.PNG",
             "steepingTime": "Steep at 165° for 2 minutes.",
@@ -63,7 +63,7 @@
 
             "id": 7,
             "name": "Oolong Tea",
-            "price":"280:-/hg",
+            "price":280,
             "country": "China taiwan",
             "image": "../teaPics/oolongTea.PNG",
             "steepingTime": "Steep at 212° for 3-5 minutes.",
@@ -73,7 +73,7 @@
 
             "id": 8,
             "name": "Pu'erh Tea",
-            "price":"290:-/hg",
+            "price":290,
             "country": "China",
             "image": "../teaPics/puerhTea.jpg",
             "steepingTime": "Steep at 212° for 3-5 minutes.",
@@ -83,7 +83,7 @@
 
             "id": 9,
             "name": "White Tea",
-            "price":"195:-/hg",
+            "price":195,
             "country": "China",
             "image": "../teaPics/whiteTea.jpg",
             "steepingTime": "Steep at 200° for 3 minutes.",
@@ -93,7 +93,7 @@
 
             "id": 10,
             "name": "Herbal Teas",
-            "price":"230:-/hg",
+            "price":230,
             "country": "China",
             "image": "../teaPics/herbalTeas.PNG",
             "steepingTime": "Steep at 212° for 5-10 minutes.",
