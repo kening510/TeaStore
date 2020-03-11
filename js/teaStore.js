@@ -54,7 +54,7 @@ function loadJSON() {
                         <div class="row">
                             <div class="col-2">
                                 <div class="price">
-                                    <p> ` + tea.price + `</p>
+                                    <p> ` + tea.price + `-:/hg</p>
                                 </div>
                             </div>
                             <div class="col-4" index="plusMinus">
