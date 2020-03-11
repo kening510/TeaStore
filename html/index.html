@@ -13,6 +13,14 @@
 <body>
     <header>
         <div class="container">
+            <div class="row" id="background">
+                <div class="jumbotron" id="title">
+                    <h1>Tea Store</h1>
+                    <hr class="my-4">
+                    <p id="cite"><cite>I like tea and yoga, but I don’t do yoga.
+                        </cite>-Moby</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12 col-sm-12 col-12 main-section">
                     <div class="dropdown btn-sm float-right">
@@ -35,17 +43,20 @@
                 </div>
             </div>
         </div>
+        </header>
 
         <!--onclick="emptyCart()"-->
 
-    <div class="container" id="listProducts">
-        <div class="row w-75">
-            <div class="col">
-                <ul class="list-group" id="tea-list"></ul>
+  
+        <div class="container" id="listProducts">
+            <div class="row justify-content-md-center">
+                <div class="col-8">
+                    <ul class="list-group" id="tea-list"></ul>
+                </div>
+                <div id ="bigPic" class="showPic"></div>
             </div>
         </div>
-    </div>
-
+    
     <!-- <ul id="teaList"></ul> -->
 
     <script src="../js/jquery-3.4.1.js"></script>

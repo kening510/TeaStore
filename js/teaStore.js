@@ -157,10 +157,6 @@ function saveCart() {
     localStorage.setItem("toBuyList", JSON.stringify(shoppingList));
 }
 
-function saveCart() {
-    localStorage.setItem("toBuyList", JSON.stringify(shoppingList));
-}
-
 function loadCart() {
     if (localStorage.getItem("toBuyList") !== null) {
         shoppingList = JSON.parse(localStorage.getItem("toBuyList"));
