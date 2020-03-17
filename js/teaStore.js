@@ -5,7 +5,6 @@ $(document).ready(function () {
     renderCartItems();
     listShoppingCartItems();
     listOrderConfirmation();
-    loadTeaList();
 })
 
 
@@ -219,16 +218,15 @@ function incrementAmountByOne(id) {
         }
     }
     saveCart();
-    saveOrder(orderList);
+       saveOrder(orderList);
     renderCartItems();
 }
 
 function renderCartItems() {
-
-    loadTeaList();
-
     $("#cart-list").empty()
     loadCart();
+
+    loadTeaList();
 
     var totalPrice = 0;
         
@@ -283,11 +281,16 @@ function removeCartItem(id) {
         }
     }
     saveCart();
+    saveOrder();
     renderCartItems();
 }
 
 
 function listShoppingCartItems() {
+
+        loadTeaList();
+
+        
 
         $("#checkoutItems").append(`<br> <li class=" list-group-item">
         <div class="row">
@@ -342,7 +345,12 @@ function listShoppingCartItems() {
 
 function listOrderConfirmation() {
 
-    loadOrder();
+        
+      loadOrder();
+      loadTeaList();
+
+
+    
 
     $("#orderConfirmationItems").append(`<br> <li class=" list-group-item">
     <div class="row">
